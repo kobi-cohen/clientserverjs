@@ -14,12 +14,13 @@ const axreq = async (url) =>{
 }
 
 app.get ('/',(req,res)=>{
-    axreq('http://127.0.0.1:3000/checker')
-    res.send(`the server is live on port number ${port}`)
+   
+    res.send(`Welcome`)
 })
 
 
-app.get('/checker',(req,res)=>{
+app.get('/checker/',(req,res)=>{
+    console.dir(req.query.value)
     console.log('checked')
     res.send('great!')
 })

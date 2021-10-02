@@ -6,15 +6,16 @@ const textBox =  document.querySelector('#inputText')
 
 // http request post
 
-axios.get('http://127.0.0.1:3000/checker')
 
 
 
 
-const textHandler = () =>{
-    if (textBox.value){
-        console.log(textBox.value)
-        textBox.value=null
+
+const textHandler = async(_value) =>{
+    if (_value){
+        console.log(_value)
+        const action = await axios.get('http://127.0.0.1:3000/checker/'+'?value='+_value)
+        
     }
 }
 
@@ -24,5 +25,6 @@ reset.addEventListener('click',()=>{
     }
 })
 btn.addEventListener('click',()=>{
-    textHandler()
+    textHandler(textBox.value)
+    textBox.value=null
 })
