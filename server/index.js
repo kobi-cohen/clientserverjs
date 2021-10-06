@@ -1,28 +1,30 @@
 const cors = require('cors')
 const { default: axios } = require('axios')
 const express = require('express')
-
+const bodyParser = require('body-parser')
 const app = express()
 
 const port = 3000
-
+app.use(express.json())
 app.use(cors()) // fix security issues header 
+// app.use(bodyParser.json())
+// app.use(.urlencoded({extends:false}))
+// app.use(bodyParser());
 
-const axreq = async (url) =>{
-    const r1 = await axios.get(url)
-    console.log('from async ' + r1.data)
-}
 
-app.get ('/',(req,res)=>{
-   
-    res.send(`Welcome`)
+
+app.post('/post',(req,res)=>{
+    console.log(req.body)
+    res.send('succeess !!!')
 })
 
 
 app.get('/checker/',(req,res)=>{
-    console.dir(req.query.value)
+    const val =req.query.value
+    console.dir(val)
+    list.push(val)
     console.log('checked')
-    res.send('great!')
+   
 })
 
 app.listen(port,()=>{
